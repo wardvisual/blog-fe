@@ -8,18 +8,17 @@ import { RegisterComponent } from './views/register/register.component';
 const routes: Routes = [
   {
     path: 'login',
-    loadComponent: () =>
-      import('./views/login/login.component').then((c) => c.LoginComponent),
+    pathMatch: 'full',
+    component: LoginComponent,
   },
   {
     path: 'register',
-    loadComponent: () =>
-      import('./views/register/register.component').then((c) => c.RegisterComponent),
+    component: RegisterComponent,
   },
 ];
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
-  imports: [CommonModule, RouterModule.forRoot(routes)],
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
 export class AuthModule {}
