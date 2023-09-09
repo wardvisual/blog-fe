@@ -8,7 +8,6 @@ import { RegisterComponent } from './views/register/register.component';
 const routes: Routes = [
   {
     path: 'login',
-    pathMatch: 'full',
     component: LoginComponent,
   },
   {
