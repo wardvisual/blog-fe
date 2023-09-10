@@ -15,7 +15,7 @@ export class LoginComponent {
   constructor(private readonly authService: AuthService) {}
 
   ngOnInit() {
-    this.loginForm = new FormGroup<LoginDto<FormControl>>({
+    this.loginForm = new FormGroup<LoginDto>({
       username: new FormControl(),
       password: new FormControl(),
     });
