@@ -26,6 +26,10 @@ export class LoginComponent {
 
     const user = this.loginForm.getRawValue();
 
-    this.authService.login(user).subscribe((data: any) => {});
+    this.authService.login(user).subscribe((result: any) => {
+      if (result.isSuccess) {
+        this.authService.setToken(result.data.accessToken);
+      }
+    });
   }
 }
