@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxsModule } from '@ngxs/store';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
@@ -15,13 +14,7 @@ import { AppStates } from './store';
 registerLocaleData(en);
 
 @NgModule({
-  imports: [
-    HttpClientModule,
-    BrowserAnimationsModule,
-    NgxsModule.forRoot(AppStates, {
-      developmentMode: environment.production,
-    }),
-  ],
+  imports: [HttpClientModule, BrowserAnimationsModule],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
 })
 export class CoreModule {}

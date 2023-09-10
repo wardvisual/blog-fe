@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { AuthService } from '@/features/auth/auth.service';
 import { LoginDto } from '@/features/auth/dtos/login.dto';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,10 @@ import { LoginDto } from '@/features/auth/dtos/login.dto';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly store: Store
+  ) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup<LoginDto>({
@@ -27,9 +31,13 @@ export class LoginComponent {
     const user = this.loginForm.getRawValue();
 
     this.authService.login(user).subscribe((result: any) => {
-      if (result.isSuccess) {
-        this.authService.setToken(result.data.accessToken);
+      if (!result.isSuccess) {
+        return;
       }
+
+      this.authService.setToken(result.data.accessToken);
+
+      // navigate to dashboard
     });
   }
 }
