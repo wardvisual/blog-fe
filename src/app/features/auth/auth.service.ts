@@ -16,4 +16,8 @@ export class AuthService {
       map((res: any) => res)
     );
   }
+
+  setToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
 }
