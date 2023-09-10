@@ -4,7 +4,13 @@
     [formGroup]="loginForm"
     (ngSubmit)="login($event)"
   >
-    <h1 class="text-5xl">Login</h1>
+    <h1 class="mb-2 text-5xl">Login</h1>
+    <nz-alert
+      class="text-start"
+      nzType="success"
+      nzMessage="Success Tips"
+      nzShowIcon
+    ></nz-alert>
     <input
       text="text"
       placeholder="Username"
