@@ -10,7 +10,7 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["src/app/*"],
       "lib": ["dist/lib"]
     },
     "noImplicitReturns": true,

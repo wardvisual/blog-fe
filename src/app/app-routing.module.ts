@@ -6,12 +6,12 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+      import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '',
     loadChildren: () =>
-      import('./modules/posts/posts.module').then((m) => m.PostsModule),
+      import('./features/posts/posts.module').then((m) => m.PostsModule),
   },
 ];
 
