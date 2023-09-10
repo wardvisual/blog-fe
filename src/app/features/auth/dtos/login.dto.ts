@@ -1,4 +1,4 @@
-export interface LoginDto {
-  username: any;
-  password: any;
+export interface LoginDto<T> {
+  username: T;
+  password: T;
 }
