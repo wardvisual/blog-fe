@@ -1,20 +1,23 @@
 <ng-container>
-  <label [for]="name">{{ label }}</label>
+  <div [formGroup]="formGroup" class="w-full">
+    <label [for]="name">{{ label }}</label>
 
-  <input
-    *ngIf="type === 'text'"
-    text="text"
-    [placeholder]="placeholder"
-    nz-input
-    nzSize="large"
-    [formControlName]="formControlName"
-  />
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      nz-input
+      nzSize="large"
+      [formControlName]="formControlName"
+      class="w-full"
+    />
 
-  <ng-container
-    *ngIf="formGroup.invalid && (formGroup.dirty || formGroup.touched)"
-  >
-    <p *ngIf="displayErrors()" class="input__field--error">
-      {{ displayErrors() }}
-    </p>
-  </ng-container>
+    <div
+      *ngIf="formGroup.invalid && (formGroup.dirty || formGroup.touched)"
+      class="text-red-500 text-start"
+    >
+      <p *ngIf="displayErrors()" class="text-xs">
+        {{ displayErrors() }}
+      </p>
+    </div>
+  </div>
 </ng-container>

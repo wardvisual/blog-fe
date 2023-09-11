@@ -25,7 +25,7 @@ export class InputComponent implements OnInit {
   }
 
   displayErrors(): string | null {
-    const control:any = this.formGroup.get(this.formControlName);
+    const control: any = this.formGroup.get(this.formControlName);
 
     if (control && control.invalid && (control.dirty || control.touched)) {
       if (control.errors.required) {
