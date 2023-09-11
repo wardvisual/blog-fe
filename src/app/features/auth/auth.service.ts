@@ -12,9 +12,7 @@ export class AuthService {
   constructor(private readonly http: HttpClient) {}
 
   login(user: LoginDto): Observable<any> {
-    return from(this.http.post(`${environment.apiUrl}/auth/login`, user)).pipe(
-      map((res: any) => res)
-    );
+    return from(this.http.post(`${environment.apiUrl}/auth/login`, user));
   }
 
   setToken(token: string): void {
