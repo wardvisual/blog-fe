@@ -5,24 +5,36 @@
     (ngSubmit)="login($event)"
   >
     <h1 class="mb-2 text-5xl">Login</h1>
-    <nz-alert
-      class="text-start"
-      nzType="success"
-      nzMessage="Success Tips"
-      nzShowIcon
-    ></nz-alert>
-    <input
-      text="text"
-      placeholder="Username"
-      class="p-2"
+    <ng-container *ngIf="store.state.message.length > 0">
+      <nz-alert
+        class="text-start"
+        [nzType]="store.state.isSuccess ? 'success' : 'error'"
+        nzMessage="{{ store.state.message }}"
+        nzShowIcon
+      ></nz-alert>
+    </ng-container>
+    <app-input
+      type="text"
       formControlName="username"
+      placeholder="Username"
+      [formGroup]="loginForm"
+      ngDefaultControl
     />
-    <input
-      text="password"
-      placeholder="Password"
-      class="p-2"
+    <app-input
+      type="text"
       formControlName="password"
+      placeholder="password"
+      [formGroup]="loginForm"
+      ngDefaultControl
     />
-    <button type="submit" class="p-2 text-white bg-blue-600">Login</button>
+    <button
+      type="submit"
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      [disabled]="store.state.isLoading || this.loginForm.invalid"
+    >
+      {{ store.state.isLoading ? "Logging in..." : "Login" }}
+    </button>
   </form>
 </ng-container>
