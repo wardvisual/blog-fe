@@ -1,0 +1,28 @@
+input,
+textarea {
+  padding: 0.7em;
+  background: none;
+  border: 1px var(--color-neutral-100) solid;
+  border-radius: var(--radius-5);
+
+  width: inherit;
+}
+
+textarea {
+  min-height: 10em;
+  resize: vertical;
+}
+
+.input__field {
+  display: grid;
+  width: 100%;
+
+  label {
+    color: var(--color-neutral-600);
+    margin: 1em 0 0.2em 0;
+  }
+
+  p {
+    color: var(--color-red-900);
+  }
+}

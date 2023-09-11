@@ -1,0 +1,20 @@
+<ng-container>
+  <label [for]="name">{{ label }}</label>
+
+  <input
+    *ngIf="type === 'text'"
+    text="text"
+    [placeholder]="placeholder"
+    nz-input
+    nzSize="large"
+    [formControlName]="formControlName"
+  />
+
+  <ng-container
+    *ngIf="formGroup.invalid && (formGroup.dirty || formGroup.touched)"
+  >
+    <p *ngIf="displayErrors()" class="input__field--error">
+      {{ displayErrors() }}
+    </p>
+  </ng-container>
+</ng-container>
