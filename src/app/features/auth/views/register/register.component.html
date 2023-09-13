@@ -1,1 +1,43 @@
-<p>register works!</p>
+<form
+  [formGroup]="loginForm"
+  (ngSubmit)="login($event)"
+>
+  <h3 class="mb-2 text-5xl">The Smarter Way to Learn bro</h3>
+  <p class="text-slate-400">Please enter your credentials</p>
+  <ng-container *ngIf="store.state.message.length > 0">
+    <nz-alert
+      class="text-start"
+      [nzType]="store.state.isSuccess ? 'success' : 'error'"
+      nzMessage="{{ store.state.message }}"
+      nzShowIcon
+    ></nz-alert>
+  </ng-container>
+  <app-input
+    type="text"
+    formControlName="username"
+    placeholder="Email / Username"
+    [formGroup]="loginForm"
+    ngDefaultControl
+  />
+  <app-input
+    type="text"
+    formControlName="password"
+    placeholder="password"
+    [formGroup]="loginForm"
+    ngDefaultControl
+  />
+  <footer class="grid gap-4">
+    <button type="submit" nz-button nzType="primary" nzSize="large">
+      <!-- [disabled]="store.state.isLoading || this.loginForm.invalid" -->
+      {{ store.state.isLoading ? "Submitting..." : "Register" }}
+    </button>
+    <p class="text-slate-400">
+      Already have an account?
+      <a
+        routerLink="/login"
+        class="font-bold text-blue-500 hover:underline hover:text-blue-600"
+        >Sign In</a
+      >
+    </p>
+  </footer>
+</form>

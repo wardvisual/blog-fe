@@ -1,55 +1,46 @@
-<div class="grid items-center h-full md:grid-cols-2">
-  <form
-    class="grid gap-2 p-5 text-start md:px-8"
+<form
+  [formGroup]="loginForm"
+  (ngSubmit)="login($event)"
+>
+  <h3 class="mb-2 text-5xl">The Smarter Way to Learn</h3>
+  <p class="text-slate-400">Please enter your credentials</p>
+  <ng-container *ngIf="store.state.message.length > 0">
+    <nz-alert
+      class="text-start"
+      [nzType]="store.state.isSuccess ? 'success' : 'error'"
+      nzMessage="{{ store.state.message }}"
+      nzShowIcon
+    ></nz-alert>
+  </ng-container>
+  <app-input
+    type="text"
+    formControlName="username"
+    placeholder="Email / Username"
     [formGroup]="loginForm"
-    (ngSubmit)="login($event)"
-  >
-    <h2 class="mb-2 text-5xl">The Smarter Way to Learn</h2>
-    <p class="text-slate-400">Please enter your credentials</p>
-    <ng-container *ngIf="store.state.message.length > 0">
-      <nz-alert
-        class="text-start"
-        [nzType]="store.state.isSuccess ? 'success' : 'error'"
-        nzMessage="{{ store.state.message }}"
-        nzShowIcon
-      ></nz-alert>
-    </ng-container>
-    <app-input
-      type="text"
-      formControlName="username"
-      placeholder="Email / Username"
-      [formGroup]="loginForm"
-      ngDefaultControl
-    />
-    <app-input
-      type="text"
-      formControlName="password"
-      placeholder="password"
-      [formGroup]="loginForm"
-      ngDefaultControl
-    />
-    <footer class="grid gap-4">
-      <div class="text-slate-400 text-end">
-        <a routerLink="/forgot-password">Forgot Password?</a>
-      </div>
-      <button
-        type="submit"
-        nz-button
-        nzType="primary"
-        nzSize="large"
-        [disabled]="store.state.isLoading || this.loginForm.invalid"
+    ngDefaultControl
+  />
+  <app-input
+    type="text"
+    formControlName="password"
+    placeholder="password"
+    [formGroup]="loginForm"
+    ngDefaultControl
+  />
+  <footer class="grid gap-4">
+    <div class="text-slate-400 text-end">
+      <a routerLink="/forgot-password">Forgot Password?</a>
+    </div>
+    <button type="submit" nz-button nzType="primary" nzSize="large">
+      <!-- [disabled]="store.state.isLoading || this.loginForm.invalid" -->
+      {{ store.state.isLoading ? "Logging in..." : "Login" }}
+    </button>
+    <p class="text-slate-400">
+      No Account Yet?
+      <a
+        routerLink="/register"
+        class="font-bold text-blue-500 hover:underline hover:text-blue-600"
+        >Sign Up</a
       >
-        {{ store.state.isLoading ? "Logging in..." : "Login" }}
-      </button>
-      <p class="text-slate-400">
-        No Account Yet?
-        <a
-          routerLink="/register"
-          class="font-bold text-blue-500 hover:underline hover:text-blue-600"
-          >Register</a
-        >
-      </p>
-    </footer>
-  </form>
-  <div class="hidden md:w-full md:block md:h-screen md:bg-blue-500"></div>
-</div>
+    </p>
+  </footer>
+</form>
