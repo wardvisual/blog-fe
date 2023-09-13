@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <header>
       <!-- header content -->
     </header>
-    <main class="mx-auto container">
+    <main class="h-full">
       <router-outlet></router-outlet>
     </main>
     <footer>
