@@ -9,7 +9,6 @@ import { AuthStore } from '@/features/auth/auth.store';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent {
