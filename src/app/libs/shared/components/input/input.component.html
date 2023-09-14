@@ -3,12 +3,22 @@
     <label [for]="name">{{ label }}</label>
 
     <input
+      *ngIf="type === 'text'"
       [type]="type"
       [placeholder]="placeholder"
-      nz-input
-      nzSize="large"
       [formControlName]="formControlName"
+      nzSize="large"
+      nz-input
     />
+
+    <textarea
+      *ngIf="type === 'textarea'"
+      [placeholder]="placeholder"
+      [formControlName]="formControlName"
+      nzSize="large"
+      nz-input
+      rows="4"
+    ></textarea>
 
     <div
       *ngIf="formGroup.invalid && (formGroup.dirty || formGroup.touched)"
