@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  ul, li {
+    @apply list-none;
+  }
+}
+
 @layer components {
   form {
     @apply grid gap-2;
