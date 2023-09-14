@@ -1,0 +1,29 @@
+<ng-container>
+  <aside>
+    <h4>BlogApp</h4>
+
+    <ul>
+      <li><a href="">Home</a></li>
+      <li><a href="">Discover</a></li>
+      <li><a href="">Notifications</a></li>
+      <li><a href="">Profile</a></li>
+      <li><a href="">Bookmarks</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <!-- header -->
+    <header><h4>What's Trending?</h4></header>
+    <!-- composer -->
+    <div>
+      <app-input
+        type="textarea"
+        formControlName="content"
+        placeholder="What's on your mind?"
+        [formGroup]="composerForm"
+        ngDefaultControl
+      />
+    </div>
+    <!-- cards -->
+  </main>
+</ng-container>
