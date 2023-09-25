@@ -12,15 +12,25 @@ import { RegisterDto } from './dtos/register.dto';
 export class AuthService {
   constructor(private readonly http: HttpClient) {}
 
-  login(user: LoginDto): Observable<any> {
+  public login(user: LoginDto): Observable<any> {
     return from(this.http.post(`${environment.apiUrl}/auth/login`, user));
   }
 
-  register(user: RegisterDto): Observable<any> {
+  public register(user: RegisterDto): Observable<any> {
     return from(this.http.post(`${environment.apiUrl}/auth/register`, user));
   }
 
-  setToken(token: string): void {
+  public setToken(token: string): void {
     localStorage.setItem('token', token);
+  }
+
+  public getToken(): string {
+    return localStorage.getItem('token');
+  }
+
+  public isAuthenticated(): boolean {
+    const token = this.getToken();
+
+    return token ? true : false;
   }
 }
