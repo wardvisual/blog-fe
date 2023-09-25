@@ -30,4 +30,8 @@ export class AuthStore extends Store<AuthState> {
       ...authState,
     }));
   }
+
+  resetState() {
+    this._setState((state) => initialState);
+  }
 }
