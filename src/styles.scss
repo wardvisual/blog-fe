@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  ul, li {
+  * {
+    @apply p-0 m-0;
+  }
+
+  ul,
+  li {
     @apply list-none;
   }
 }
