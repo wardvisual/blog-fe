@@ -4,6 +4,7 @@ import { Observable, from, map } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { LoginDto } from './dtos/login.dto';
+import { RegisterDto } from './dtos/register.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,10 @@ export class AuthService {
 
   login(user: LoginDto): Observable<any> {
     return from(this.http.post(`${environment.apiUrl}/auth/login`, user));
+  }
+
+  register(user: RegisterDto): Observable<any> {
+    return from(this.http.post(`${environment.apiUrl}/auth/register`, user));
   }
 
   setToken(token: string): void {
