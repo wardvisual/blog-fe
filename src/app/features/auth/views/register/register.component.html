@@ -1,7 +1,4 @@
-<form
-  [formGroup]="loginForm"
-  (ngSubmit)="login($event)"
->
+<form [formGroup]="registerForm" (ngSubmit)="register($event)">
   <h3 class="mb-2 text-5xl">The Smarter Way to Learn bro</h3>
   <p class="text-slate-400">Please enter your credentials</p>
   <ng-container *ngIf="store.state.message.length > 0">
@@ -14,21 +11,35 @@
   </ng-container>
   <app-input
     type="text"
+    formControlName="firstName"
+    placeholder="First Name"
+    [formGroup]="registerForm"
+    ngDefaultControl
+  />
+  <app-input
+    type="text"
+    formControlName="lastName"
+    placeholder="Last Name"
+    [formGroup]="registerForm"
+    ngDefaultControl
+  />
+  <app-input
+    type="text"
     formControlName="username"
     placeholder="Email / Username"
-    [formGroup]="loginForm"
+    [formGroup]="registerForm"
     ngDefaultControl
   />
   <app-input
     type="text"
     formControlName="password"
     placeholder="password"
-    [formGroup]="loginForm"
+    [formGroup]="registerForm"
     ngDefaultControl
   />
   <footer class="grid gap-4">
     <button type="submit" nz-button nzType="primary" nzSize="large">
-      <!-- [disabled]="store.state.isLoading || this.loginForm.invalid" -->
+      <!-- [disabled]="store.state.isLoading || this.registerForm.invalid" -->
       {{ store.state.isLoading ? "Submitting..." : "Register" }}
     </button>
     <p class="text-slate-400">
