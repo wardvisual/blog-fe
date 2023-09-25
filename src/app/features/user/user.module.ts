@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+
 import { SharedModule } from '@/libs/shared/shared.module';
 
-import { HomeComponent } from './views/home/home.component';
-import { ProfileComponent } from './views/profile/profile.component';
+import { FeedComponent } from './views/feed/feed.component';
 import { UserLayout } from './layouts/user.layout';
+import { ProfileComponent } from './views/profile/profile.component';
+import { CardComponent } from '@/libs/shared/components/card/card.component';
+import { ComposerComponent } from '@/libs/shared/components/composer/composer.component';
 
 const routes: Routes = [
   {
@@ -14,14 +18,20 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent,
+        component: FeedComponent,
       },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [UserLayout, HomeComponent, ProfileComponent],
-  imports: [SharedModule, RouterModule.forChild(routes)],
+  declarations: [
+    UserLayout,
+    FeedComponent,
+    ProfileComponent,
+    ComposerComponent,
+    CardComponent,
+  ],
+  imports: [SharedModule, NzUploadModule, RouterModule.forChild(routes)],
 })
 export class UserModule {}
