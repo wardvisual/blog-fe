@@ -14,7 +14,7 @@ const routes: Routes = [
       import('./features/posts/posts.module').then((m) => m.PostsModule),
   },
   {
-    path: 'profile',
+    path: 'feed',
     pathMatch: 'full',
     loadChildren: () =>
       import('./features/user/user.module').then((m) => m.UserModule),
