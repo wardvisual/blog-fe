@@ -5,6 +5,7 @@ import { AuthService } from '@/features/auth/auth.service';
 import { LoginDto } from '@/features/auth/dtos/login.dto';
 
 import { AuthStore } from '@/features/auth/auth.store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent {
 
   constructor(
     private readonly authService: AuthService,
-    public readonly store: AuthStore
+    public readonly store: AuthStore,
+    public readonly router: Router
   ) {}
 
   ngOnInit() {
@@ -31,6 +33,8 @@ export class LoginComponent {
         Validators.minLength(6),
       ]),
     });
+
+    this.store.resetState();
   }
 
   get field(): any {
@@ -57,6 +61,7 @@ export class LoginComponent {
         });
 
         this.authService.setToken(res.data.accessToken);
+        this.router.navigate(['/feed']);
       },
       ({ error }) => {
         this.store.setState({
