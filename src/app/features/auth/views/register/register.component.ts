@@ -2,9 +2,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '@/features/auth/auth.service';
-import { LoginDto } from '@/features/auth/dtos/login.dto';
+import { RegisterDto } from '@/features/auth/dtos/register.dto';
 
 import { AuthStore } from '@/features/auth/auth.store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,15 +13,26 @@ import { AuthStore } from '@/features/auth/auth.store';
   encapsulation: ViewEncapsulation.None,
 })
 export class RegisterComponent {
-  loginForm: FormGroup;
+  registerForm: FormGroup;
 
   constructor(
     private readonly authService: AuthService,
-    public readonly store: AuthStore
+    public readonly store: AuthStore,
+    public readonly router: Router
   ) {}
 
   ngOnInit() {
-    this.loginForm = new FormGroup<LoginDto>({
+    this.registerForm = new FormGroup<RegisterDto>({
+      firstName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+      ]),
+      lastName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+      ]),
       username: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
@@ -31,23 +43,27 @@ export class RegisterComponent {
         Validators.minLength(6),
       ]),
     });
+
+    this.store.resetState();
   }
 
   get field(): any {
     return {
-      username: this.loginForm.get('username'),
-      password: this.loginForm.get('password'),
+      firstName: this.registerForm.get('firstName'),
+      lastName: this.registerForm.get('lastName'),
+      username: this.registerForm.get('username'),
+      password: this.registerForm.get('password'),
     };
   }
 
-  login(event: Event) {
+  register(event: Event) {
     event.preventDefault();
 
-    const user = this.loginForm.getRawValue();
+    const user = this.registerForm.getRawValue();
 
     this.store.setState({ isLoading: true });
 
-    this.authService.login(user).subscribe(
+    this.authService.register(user).subscribe(
       (res) => {
         this.store.setState({
           isAuthenticated: true,
@@ -56,7 +72,7 @@ export class RegisterComponent {
           isLoading: false,
         });
 
-        this.authService.setToken(res.data.accessToken);
+        this.router.navigate(['/login']);
       },
       ({ error }) => {
         this.store.setState({
