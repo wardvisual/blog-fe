@@ -1,26 +1,46 @@
-<app-input
-  type="textarea"
-  formControlName="content"
-  placeholder="What's on your mind?"
-  [formGroup]="composerForm"
-  ngDefaultControl
-/>
+<form class="grid gap-4">
+  <app-input
+    type="textarea"
+    formControlName="content"
+    placeholder="What's on your mind?"
+    [formGroup]="composerForm"
+    ngDefaultControl
+  />
 
-<input
-  #mediaInput
-  (change)="handleFileSelect($event)"
-  id="media"
-  multiple
-  style="display: none"
-  type="file"
-/>
-<span (click)="mediaInput.click()">new</span>
-<button
-  type="submit"
-  nz-button
-  nzType="primary"
-  nzSize="large"
-  class="float-right"
->
-  Blog it!
-</button>
+  <input
+    #mediaInput
+    (change)="handleFileSelect($event)"
+    id="media"
+    multiple
+    style="display: none"
+    type="file"
+  />
+
+  <footer class="flex flex-wrap justify-between items-center">
+    <div class="flex gap-4">
+      <ng-icon class="text-slate-500" size="1.5rem" name="ionText"></ng-icon>
+      <ng-icon
+        (click)="mediaInput.click()"
+        class="text-slate-500"
+        size="1.5rem"
+        name="ionImage"
+      ></ng-icon>
+      <ng-icon class="text-slate-500" size="1.5rem" name="ionCode"></ng-icon>
+      <ng-icon
+        class="text-slate-500"
+        size="1.5rem"
+        name="ionTerminal"
+      ></ng-icon>
+    </div>
+
+    <button
+      type="submit"
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      class="float-right"
+    >
+      Blog it!
+    </button>
+  </footer>
+</form>
