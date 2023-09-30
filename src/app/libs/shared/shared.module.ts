@@ -11,7 +11,35 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 
 import { InputComponent } from '@/libs/shared/components';
 
-const modules = [
+import { NgIconsModule } from '@ng-icons/core';
+import { heroUsers, heroArchiveBox } from '@ng-icons/heroicons/outline';
+import {
+  ionImage,
+  ionText,
+  ionCode,
+  ionTerminal,
+  ionHome,
+  ionSearch,
+  ionNotifications,
+  ionPerson,
+  ionBookmark,
+} from '@ng-icons/ionicons';
+
+const icons = {
+  heroUsers,
+  heroArchiveBox,
+  ionImage,
+  ionText,
+  ionCode,
+  ionTerminal,
+  ionHome,
+  ionSearch,
+  ionNotifications,
+  ionPerson,
+  ionBookmark,
+};
+
+const modules: any = [
   CommonModule,
   ReactiveFormsModule,
   NzAlertModule,
@@ -20,6 +48,8 @@ const modules = [
   NzCardModule,
   NzAvatarModule,
   NzIconModule,
+
+  NgIconsModule.withIcons(icons),
 ];
 
 const components = [InputComponent];
