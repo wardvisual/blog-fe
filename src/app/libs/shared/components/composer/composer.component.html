@@ -1,16 +1,20 @@
-<form class="grid gap-4">
+<form
+  class="grid gap-4"
+  [formGroup]="composerForm"
+  (ngSubmit)="postBlog($event)"
+>
   <app-input
     type="textarea"
-    formControlName="content"
     placeholder="What's on your mind?"
+    formControlName="content"
     [formGroup]="composerForm"
     ngDefaultControl
   />
 
   <input
     #mediaInput
-    (change)="handleFileSelect($event)"
     id="media"
+    (change)="handleFileSelect($event)"
     multiple
     style="display: none"
     type="file"
